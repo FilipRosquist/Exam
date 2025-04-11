@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { disablePageScroll, enablePageScroll } from "scroll-lock";
 import { navigation } from "../constants";
 import PanelLogo from "../assets/panellogo.png"
 import Button from "./Button";
@@ -16,14 +17,19 @@ const Header = () => {
 
     if(openNavigation) {
       setOpenNavigation(false);
+      enablePageScroll()
     }
     else{
       setOpenNavigation(true);
+      disablePageScroll()
     }
 
   }
 
   const handleClick = () => {
+    if(!openNavigation) return;
+    
+    enablePageScroll()
     setOpenNavigation(false);
   }
 
